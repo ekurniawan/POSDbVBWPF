@@ -89,10 +89,8 @@ Public Class Barang
             Return _kategori
         End Get
         Set(ByVal value As Kategori)
-            If (Not value.Equals(_kategori)) Then
-                _kategori = value
-                NotifyPropertyChanged("Kategori")
-            End If
+            _kategori = value
+            NotifyPropertyChanged("Kategori")
         End Set
     End Property
 
