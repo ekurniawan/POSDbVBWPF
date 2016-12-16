@@ -70,6 +70,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MasterBarang.xaml.vb">
+      <DependentUpon>MasterBarang.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\BarangViewModel.vb" />
     <Compile Include="ViewModels\KategoriViewModel.vb" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -83,6 +87,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MasterBarang.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MasterKategori.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -15,7 +15,7 @@
             </MenuItem>
             <MenuItem Header="Master">
                 <MenuItem Header="_Master Kategori" x:Name="menuMasterKategori" Click="menuMasterKategori_Click"/>
-                <MenuItem Header="_Master Barang"/>
+                <MenuItem Header="_Master Barang" x:Name="menuMasterBarang" Click="menuMasterBarang_Click" />
             </MenuItem>
         </Menu>
         <StackPanel>

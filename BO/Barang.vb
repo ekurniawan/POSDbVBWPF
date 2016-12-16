@@ -58,7 +58,7 @@ Public Class Barang
     End Property
 
     Private _hargaJual As Decimal
-    Public Property NewProperty() As Decimal
+    Public Property HargaJual() As Decimal
         Get
             Return _hargaJual
         End Get

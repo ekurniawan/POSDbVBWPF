@@ -3,12 +3,12 @@
 Public Class Kategori
     Implements INotifyPropertyChanged
 
-    Private _kategoriId As String
-    Public Property KategoriId() As String
+    Private _kategoriId As Integer
+    Public Property KategoriId() As Integer
         Get
             Return _kategoriId
         End Get
-        Set(ByVal value As String)
+        Set(ByVal value As Integer)
             If value <> _kategoriId Then
                 _kategoriId = value
                 NotifyPropertyChanged("KategoriId")

@@ -1,12 +1,5 @@
 ﻿Public Class MainWindow
 
-    'Private Static MainWindow _instance;
-    '    Public Static MainWindow Instance()
-    '    {
-    '        If (_instance == null)
-    '            _instance = New MainWindow();
-    '        Return _instance;
-    '    }
 
     Private Shared _instance As MainWindow
     Public Shared Function Instance() As MainWindow
@@ -38,5 +31,10 @@
     Private Sub menuMasterKategori_Click(sender As Object, e As RoutedEventArgs)
         Dim frmMasterKategori As New MasterKategori
         frmMasterKategori.Show()
+    End Sub
+
+    Private Sub menuMasterBarang_Click(sender As Object, e As RoutedEventArgs)
+        Dim frmMasterBarang As New MasterBarang
+        frmMasterBarang.Show()
     End Sub
 End Class
