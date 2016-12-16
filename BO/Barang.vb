@@ -17,12 +17,12 @@ Public Class Barang
     End Property
 
 
-    Private _kategoriId As String
-    Public Property KategoriId() As String
+    Private _kategoriId As Integer
+    Public Property KategoriId() As Integer
         Get
             Return _kategoriId
         End Get
-        Set(ByVal value As String)
+        Set(ByVal value As Integer)
             If value <> _kategoriId Then
                 _kategoriId = value
                 NotifyPropertyChanged("KategoriId")
@@ -80,6 +80,17 @@ Public Class Barang
                 _stok = value
                 NotifyPropertyChanged("Stok")
             End If
+        End Set
+    End Property
+
+    Private _isReady As Nullable(Of Boolean)
+    Public Property IsReady() As Nullable(Of Boolean)
+        Get
+            Return _isReady
+        End Get
+        Set(ByVal value As Nullable(Of Boolean))
+            _isReady = value
+            NotifyPropertyChanged("IsReady")
         End Set
     End Property
 

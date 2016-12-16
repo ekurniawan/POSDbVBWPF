@@ -33,13 +33,27 @@ Public Class BarangDAL
         Return result
     End Function
 
+
+    'Public Function GetByKode(listKode As IEnumerable(Of String)) As IEnumerable(Of Barang)
+    '    Dim whereStr = String.Empty
+    '    For Each kode In listKode
+    '        whereStr &= "'" & kode & "'" & ","
+    '    Next
+    '    whereStr.Substring(0, whereStr.Length - 2)
+
+    '    Dim strSql = String.Format("select * from Barang where in ({0})", whereStr)
+
+    '    Return conn.Query(Of Barang)(strSql)
+    'End Function
+
+
     Public Sub Insert(_barang As Barang)
-        Dim strSql = "insert into Barang(KodeBarang,KategoriId,NamaBarang,HargaBeli,HargaJual,Stok) 
-                      values(@KodeBarang,@KategoriId,@NamaBarang,@HargaBeli,@HargaJual,@Stok)"
+        Dim strSql = "insert into Barang(KodeBarang,KategoriId,NamaBarang,HargaBeli,HargaJual,Stok,IsReady) 
+                      values(@KodeBarang,@KategoriId,@NamaBarang,@HargaBeli,@HargaJual,@Stok,@IsReady)"
 
         Dim param = New With {.KodeBarang = _barang.KodeBarang,
             .KategoriId = _barang.KategoriId, .NamaBarang = _barang.NamaBarang,
-            .HargaBeli = _barang.HargaBeli, .HargaJual = _barang.HargaJual, .Stok = _barang.Stok}
+            .HargaBeli = _barang.HargaBeli, .HargaJual = _barang.HargaJual, .Stok = _barang.Stok, .IsReady = _barang.IsReady}
 
         Try
             conn.Execute(strSql, param)
@@ -51,12 +65,12 @@ Public Class BarangDAL
     End Sub
 
     Public Sub Update(_barang As Barang)
-        Dim strSql = "update Barang set KategoriId=@KategoriId,NamaBarang=@NamaBarang,HargaBeli=@HargaBeli,HargaJual=@HargaJual,Stok=@Stok 
+        Dim strSql = "update Barang set KategoriId=@KategoriId,NamaBarang=@NamaBarang,HargaBeli=@HargaBeli,HargaJual=@HargaJual,Stok=@Stok,IsReady=@IsReady
                       where KodeBarang=@KodeBarang"
 
         Dim param = New With {.KodeBarang = _barang.KodeBarang,
             .KategoriId = _barang.KategoriId, .NamaBarang = _barang.NamaBarang,
-            .HargaBeli = _barang.HargaBeli, .HargaJual = _barang.HargaJual, .Stok = _barang.Stok}
+            .HargaBeli = _barang.HargaBeli, .HargaJual = _barang.HargaJual, .Stok = _barang.Stok, .IsReady = _barang.IsReady}
 
         Try
             conn.Execute(strSql, param)
@@ -79,4 +93,6 @@ Public Class BarangDAL
             conn.Close()
         End Try
     End Sub
+
+
 End Class

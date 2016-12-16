@@ -7,15 +7,16 @@
         mc:Ignorable="d"
         Title="Master Barang" Height="600" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Window.Resources>
-        <!--<ObjectDataProvider x:Key="src" ObjectType="{x:Type local:BarangViewModel}" />-->
+        <ObjectDataProvider x:Key="src" ObjectType="{x:Type local:BarangViewModel}" />
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="300" />
+            <RowDefinition Height="350" />
             <RowDefinition Height="200*" />
         </Grid.RowDefinitions>
-        <Grid>
+        <Grid x:Name="gridForm">
             <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
                 <RowDefinition Height="40" />
                 <RowDefinition Height="40" />
                 <RowDefinition Height="40" />
@@ -48,10 +49,47 @@
             <Label Grid.Row="5" Content="_Stok :" Target="{Binding ElementName=txtStok}" 
                    HorizontalAlignment="Right" VerticalAlignment="Center" />
             <TextBox Grid.Row="5" Grid.Column="1" x:Name="txtStok" Text="{Binding Stok}" Width="60" Height="30" HorizontalAlignment="Left" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+
+            <Label Grid.Row="6" Content="_Is Ready :" Target="{Binding ElementName=chkReady}" 
+                   HorizontalAlignment="Right" VerticalAlignment="Center" />
+            <CheckBox Grid.Row="6" Grid.Column="1" x:Name="chkReady" IsChecked="{Binding IsReady}" Width="60" Height="30" HorizontalAlignment="Left" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+
+            <StackPanel x:Name="stackButton" Grid.Row="7" Grid.Column="1" Orientation="Horizontal" >
+                <Button x:Name="btnNew" Margin="0 0 4 0" Content="New" Width="60" Height="30" />
+                <Button x:Name="btnEdit" Margin="0 0 4 0" Content="Edit" Width="60" Height="30" />
+                <Button x:Name="btnSave" Margin="0 0 4 0" Content="Save" Width="60" Height="30" />
+                <Button x:Name="btnDelete" Margin="0 0 4 0" Content="Delete" Width="60" Height="30" />
+                <Button x:Name="btnSavePermanen" Margin="0 0 4 0" Content="Save Permanen" Width="90" Height="30" />
+            </StackPanel>
         </Grid>
         <Grid x:Name="myDataGrid" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center">
             <DataGrid x:Name="dgvBarang" ItemsSource="{Binding}" Width="750"  
-                      Height="350" Margin="20" IsSynchronizedWithCurrentItem="True" />
+                      Height="350" Margin="20" IsSynchronizedWithCurrentItem="True" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Kode Barang" Binding="{Binding KodeBarang}" />
+                    <DataGridComboBoxColumn Header="Kategori" DisplayMemberPath="NamaKategori" 
+                      SelectedValuePath="KategoriId" ItemsSource="{Binding Source={StaticResource src},Path=ListKategori}"
+                      SelectedValueBinding="{Binding KategoriId}" />
+                    <DataGridCheckBoxColumn Header="Is Ready" Binding="{Binding IsReady}"  />
+                    <DataGridTextColumn Header="Nama Barang" Binding="{Binding NamaBarang}" />
+                    <DataGridTemplateColumn Header="Harga Beli">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <TextBlock Text="{Binding HargaBeli,StringFormat='#,##;Rp.(#,##)'}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <TextBox Text="{Binding HargaBeli,StringFormat='#,##;Rp.(#,##)'}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
         </Grid>
     </Grid>
 </Window>
